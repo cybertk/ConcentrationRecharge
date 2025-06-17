@@ -1,5 +1,6 @@
 local addonName, ns = ...
 
+local L = ns.L
 local Util = ns.Util
 local CharacterStore = ns.CharacterStore
 local Concentration = ns.Concentration
@@ -190,7 +191,7 @@ function ConcentrationRecharge:AddRechargeToTooltip(tooltip, concentration)
 		tooltip:AddLine(indent .. SPELL_RECHARGE_TIME:format(timeLeft))
 	end
 
-	tooltip:AddLine("|n|cnGREEN_FONT_COLOR:<Press CTRL to show all characters>|r")
+	tooltip:AddLine(format("|n|cnGREEN_FONT_COLOR:%s|r", L["show_all_characters"]))
 end
 
 function ConcentrationRecharge:AddWarbandConcentrationToTooltip(tooltip, skillLine)
@@ -289,7 +290,7 @@ function ConcentrationRecharge:RegisterSettings()
 			key = "glow-" .. skillLine,
 			type = "toggle",
 			title = title,
-			tooltip = format("Show glow effect on the |cffffffff%s|r spell icon when the concentration is fully recharged", name),
+			tooltip = L["show_glow_effect_on_spell_icon"]:format(name),
 			default = true,
 			requires = "glow",
 			parent = "glow",
@@ -300,8 +301,8 @@ function ConcentrationRecharge:RegisterSettings()
 	table.insert(settings, 1, {
 		key = "glow",
 		type = "toggle",
-		title = "Enable cooldown glow effects",
-		tooltip = "Show glow effect on the spell icon when the concentration is fully recharged",
+		title = L["enable_glow_effects"],
+		tooltip = L["show_glow_effect_on_spell_icon"]:format(PROFESSIONS_TRACKER_HEADER_PROFESSION),
 		default = true,
 	})
 
