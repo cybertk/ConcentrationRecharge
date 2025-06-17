@@ -36,7 +36,7 @@ function Concentration.__lt(a, b)
 end
 
 function Concentration:Create(name, skillLine, spelloffset, buttonIndex)
-	if self.skillLinesTWW[skillLine] == nil then
+	if not self:IsValidSkillLine(skillLine) then
 		Util:Debug("Unsupported profession:", name)
 		return
 	end
@@ -78,6 +78,10 @@ function Concentration:Update()
 	Util:Debug("Concentration Updated:", self.skillLine, self.v)
 
 	return true
+end
+
+function Concentration:IsValidSkillLine(skillLine)
+	return self.skillLinesTWW[skillLine] ~= nil
 end
 
 function Concentration:GetLatestV()
@@ -161,6 +165,10 @@ function Character:Update()
 			if concentration == nil then
 				concentration = Concentration:Create(name, skillLine, spelloffset, i)
 				self.concentration[skillLine] = concentration
+			elseif not Concentration:IsValidSkillLine(skillLine) then
+				concentration = nil
+				self.concentration[skillLine] = nil
+				Util:Debug("Removed unsupported prefession:", skillLine)
 			end
 
 			if concentration then
