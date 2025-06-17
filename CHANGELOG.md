@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.4.0 - 2025-06-17
+
+- Upgraded ToC to 11.1.7
+- Updated add icon
+
 ## v1.3.1 - 2025-04-30
 
 ### Fix
