@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0 - 2025-06-18
+
+- Upgraded the glow effect to the new Combat Assist style and fixed crash:
+    - ConcentrationRecharge.lua:57: CreateFrame(): Couldn't find inherited node "ActionBarButtonSpellActivationAlert"
+- Added Russian language support
+
 ## v1.4.0 - 2025-06-17
 
 - Upgraded ToC to 11.1.7
