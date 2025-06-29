@@ -225,6 +225,7 @@ function ConcentrationRecharge:CreateCooldown(button, concentration)
 	Mixin(cooldown, ConcentrationCooldownMixin)
 	cooldown.concentration = concentration
 	cooldown:OnLoad()
+	cooldown:SetGlowShown(ConcentrationRechargeSettings.glow and ConcentrationRechargeSettings["glow-" .. concentration.skillLine])
 
 	do
 		local function SetGlowShown(show)
