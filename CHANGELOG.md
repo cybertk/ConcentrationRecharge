@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.1 - 2025-08-08
+
+- Upgraded ToC to 11.2.0
+
 ## v3.0 - 2025-06-29
 
 - Concentration cooldown can now be updated during crafting - With the toggle option in Settings
