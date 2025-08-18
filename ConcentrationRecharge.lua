@@ -162,8 +162,6 @@ function ConcentrationRecharge:Init()
 			self:AddRechargeToTooltip(tooltip, concentration)
 		end
 	end)
-
-	self:RegisterSettings()
 end
 
 function ConcentrationRecharge:FormatConcentration(concentration)
@@ -379,5 +377,7 @@ if _G["ConcentrationRecharge"] == nil then
 		ConcentrationRecharge.db = ConcentrationRechargeDB
 		Util.debug = ConcentrationRechargeDB.debug
 		CharacterStore.Load(ConcentrationRechargeDB.characters)
+
+		ConcentrationRecharge:RegisterSettings()
 	end)
 end

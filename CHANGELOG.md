@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.2 - 2025-08-18
+
+Fixed crashes on first installation:
+- ConcentrationRecharge.lua:228: attempt to index global 'ConcentrationRechargeSettings'
+
 ## v3.1 - 2025-08-08
 
 - Upgraded ToC to 11.2.0
