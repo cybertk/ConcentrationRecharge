@@ -20,6 +20,16 @@ local Concentration = {
 		-- [393] = 2882, -- Skinning
 		[197] = 2883, -- Tailoring
 	},
+	skillLinesMN = {
+		[171] = 2906, -- Alchemy
+		[164] = 2907, -- Blacksmithing
+		[333] = 2909, -- Enchanting
+		[202] = 2910, -- Engineering
+		[773] = 2913, -- Inscription
+		[755] = 2914, -- Jewelcrafting
+		[165] = 2915, -- Leatherworking
+		[197] = 2918, -- Tailoring
+	},
 }
 
 Concentration.__index = Concentration
@@ -58,7 +68,7 @@ end
 function Concentration:Update()
 	local currencyID = self.skillLineToCurrencyCache[self.skillLine]
 	if not currencyID then
-		currencyID = C_TradeSkillUI.GetConcentrationCurrencyID(self.skillLinesTWW[self.skillLine])
+		currencyID = C_TradeSkillUI.GetConcentrationCurrencyID(self.skillLinesMN[self.skillLine])
 
 		if not currencyID then
 			return false
@@ -81,7 +91,7 @@ function Concentration:Update()
 end
 
 function Concentration:IsValidSkillLine(skillLine)
-	return self.skillLinesTWW[skillLine] ~= nil
+	return self.skillLinesMN[skillLine] ~= nil
 end
 
 function Concentration:GetLatestV()
