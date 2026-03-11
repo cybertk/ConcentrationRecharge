@@ -148,6 +148,10 @@ function ConcentrationRecharge:Init()
 	TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, function(tooltip, data)
 		local spellID = tooltip:GetPrimaryTooltipData().id
 
+		if issecretvalue(spellID) then 
+			return
+		end
+
 		if not self:IsLearnedProfessionSpell(spellID) then
 			return
 		end
