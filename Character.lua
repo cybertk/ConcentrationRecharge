@@ -4,32 +4,22 @@ local Util = ns.Util
 
 local Concentration = {
 	skillLineToCurrencyCache = {},
-	skillLinesTWW = {
-		[171] = 2871, -- Alchemy
-		-- [794] = 278910, -- Archaeology
-		[164] = 2872, -- Blacksmithing
-		-- [185] = 2873, -- Cooking
-		[333] = 2874, -- Enchanting
-		[202] = 2875, -- Engineering
-		-- [356] = 2876, -- Fishing
-		-- [182] = 2877, -- Herbalism
-		[773] = 2878, -- Inscription
-		[755] = 2879, -- Jewelcrafting
-		[165] = 2880, -- Leatherworking
-		-- [186] = 2881, -- Mining
-		-- [393] = 2882, -- Skinning
-		[197] = 2883, -- Tailoring
-	},
-	skillLinesMN = {
-		[171] = 2906, -- Alchemy
-		[164] = 2907, -- Blacksmithing
-		[333] = 2909, -- Enchanting
-		[202] = 2910, -- Engineering
-		[773] = 2913, -- Inscription
-		[755] = 2914, -- Jewelcrafting
-		[165] = 2915, -- Leatherworking
-		[197] = 2918, -- Tailoring
-	},
+	skillLines = {
+		[171] = {2906, 2871}, -- Alchemy
+		-- [794] = {278910}, -- Archaeology
+		[164] = {2907, 2872}, -- Blacksmithing
+		-- [185] = {2908, 2873}, -- Cooking
+		[333] = {2909, 2874}, -- Enchanting
+		[202] = {2910, 2875}, -- Engineering
+		-- [356] = {2911, 2876}, -- Fishing
+		-- [182] = {2912, 2877}, -- Herbalism
+		[773] = {2913, 2878}, -- Inscription
+		[755] = {2914, 2879}, -- Jewelcrafting
+		[165] = {2915, 2880}, -- Leatherworking
+		-- [186] = {2916, 2881}, -- Mining
+		-- [393] = {2917, 2882}, -- Skinning
+		[197] = {2918, 2883}, -- Tailoring
+	}
 }
 
 Concentration.__index = Concentration
@@ -68,7 +58,14 @@ end
 function Concentration:Update()
 	local currencyID = self.skillLineToCurrencyCache[self.skillLine]
 	if not currencyID then
-		currencyID = C_TradeSkillUI.GetConcentrationCurrencyID(self.skillLinesMN[self.skillLine])
+		for _, v in ipairs(self.skillLines[self.skillLine]) do
+			currencyID = C_TradeSkillUI.GetConcentrationCurrencyID(v)
+
+			if currencyID then
+				-- Found first available concentration value
+				break
+			end
+		end
 
 		if not currencyID then
 			return false
@@ -91,7 +88,7 @@ function Concentration:Update()
 end
 
 function Concentration:IsValidSkillLine(skillLine)
-	return self.skillLinesMN[skillLine] ~= nil
+	return self.skillLines[skillLine] ~= nil
 end
 
 function Concentration:GetLatestV()

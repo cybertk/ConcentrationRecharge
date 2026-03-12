@@ -276,7 +276,7 @@ end
 function ConcentrationRecharge:RegisterSettings()
 	local settings = {}
 
-	for skillLine, _ in pairs(Concentration.skillLinesTWW) do
+	for skillLine, _ in pairs(Concentration.skillLines) do
 		local name = C_TradeSkillUI.GetProfessionInfoBySkillLineID(skillLine).professionName
 		local title = format("|T%d:30|t %s", Util:GetProfessionIcon(skillLine), name)
 
