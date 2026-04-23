@@ -34,4 +34,5 @@ Locales\Locales.xml
 Util.lua
 Character.lua
 CharacterStore.lua
+Settings.lua
 ConcentrationRecharge.lua
