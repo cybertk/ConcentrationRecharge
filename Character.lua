@@ -5,21 +5,21 @@ local Util = ns.Util
 local Concentration = {
 	skillLineToCurrencyCache = {},
 	skillLines = {
-		[171] = {2906, 2871}, -- Alchemy
+		[171] = { 2906, 2871 }, -- Alchemy
 		-- [794] = {278910}, -- Archaeology
-		[164] = {2907, 2872}, -- Blacksmithing
+		[164] = { 2907, 2872 }, -- Blacksmithing
 		-- [185] = {2908, 2873}, -- Cooking
-		[333] = {2909, 2874}, -- Enchanting
-		[202] = {2910, 2875}, -- Engineering
+		[333] = { 2909, 2874 }, -- Enchanting
+		[202] = { 2910, 2875 }, -- Engineering
 		-- [356] = {2911, 2876}, -- Fishing
 		-- [182] = {2912, 2877}, -- Herbalism
-		[773] = {2913, 2878}, -- Inscription
-		[755] = {2914, 2879}, -- Jewelcrafting
-		[165] = {2915, 2880}, -- Leatherworking
+		[773] = { 2913, 2878 }, -- Inscription
+		[755] = { 2914, 2879 }, -- Jewelcrafting
+		[165] = { 2915, 2880 }, -- Leatherworking
 		-- [186] = {2916, 2881}, -- Mining
 		-- [393] = {2917, 2882}, -- Skinning
-		[197] = {2918, 2883}, -- Tailoring
-	}
+		[197] = { 2918, 2883 }, -- Tailoring
+	},
 }
 
 Concentration.__index = Concentration
@@ -135,6 +135,11 @@ function Character:New(o)
 
 	if next(o) == nil then
 		Character._Init(o)
+	else
+		-- Migration: ensure existing characters have enabled field
+		if o.enabled == nil then
+			o.enabled = true
+		end
 	end
 
 	for _, concentration in pairs(o.concentration) do
@@ -155,6 +160,7 @@ function Character:_Init()
 	self.factionName = localizedFactionName
 	self.class = classFile
 	self.concentration = {}
+	self.enabled = true
 	self.updatedAt = GetServerTime()
 
 	Util:Debug("Initialized new character:", self.name)

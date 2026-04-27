@@ -148,7 +148,7 @@ function ConcentrationRecharge:Init()
 	TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, function(tooltip, data)
 		local spellID = tooltip:GetPrimaryTooltipData().id
 
-		if issecretvalue(spellID) then 
+		if issecretvalue(spellID) then
 			return
 		end
 
@@ -383,5 +383,10 @@ if _G["ConcentrationRecharge"] == nil then
 		CharacterStore.Load(ConcentrationRechargeDB.characters)
 
 		ConcentrationRecharge:RegisterSettings()
+
+		-- Initialize character management options
+		if ns.Options then
+			ns.Options:Initialize()
+		end
 	end)
 end

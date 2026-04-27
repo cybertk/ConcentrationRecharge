@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git reset --hard HEAD~1)",
+      "Bash(git checkout -b feat-bump-toc-12-0-5)",
+      "Bash(git add ConcentrationRecharge.toc)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: bump toc to 12.0.5\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push -u origin feat-bump-toc-12-0-5)",
+      "Bash(gh pr create --title \"feat: bump toc to 12.0.5\" --body \"$(cat <<''EOF''\n## Summary\n• Updates addon interface version from 12.0.1 to 12.0.5 for compatibility with latest WoW patch\n\n## Test plan\n- [ ] Verify addon loads correctly in WoW 12.0.5\n- [ ] Confirm concentration tracking still works across all supported professions\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\nEOF\n)\")",
+      "Bash(gh auth status)",
+      "Bash(unset GITHUB_TOKEN)",
+      "Bash(git checkout -b remove-dashi-dependencies)",
+      "Bash(git add .pkgmeta ConcentrationRecharge.toc Embeds.xml CLAUDE.md Settings.lua ConcentrationRecharge.lua)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nrefactor: Remove Dashi dependencies and implement custom settings system\n\n- Remove Dashi external dependency from .pkgmeta\n- Remove Dashi script references from Embeds.xml\n- Create new Settings.lua with custom settings implementation\n- Update ConcentrationRecharge.toc to include Settings.lua\n- Maintain identical user functionality with custom UI panels\n- Add CLAUDE.md documentation for future development\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push -u origin remove-dashi-dependencies)",
+      "Bash(git checkout main)",
+      "Bash(git pull origin main)",
+      "Bash(git checkout remove-dashi-dependencies)",
+      "Bash(git rebase main)",
+      "Bash(git push --force-with-lease origin remove-dashi-dependencies)",
+      "Bash(git add Settings.lua)",
+      "Bash(git push origin remove-dashi-dependencies)",
+      "Read(//Users/quanlong/projects/wow.repos/Syndicator/**)",
+      "Bash(git stash push -m \"WIP: current changes before switching to main\")",
+      "Bash(git checkout -b feat-characters)",
+      "Read(//Users/quanlong/projects/World of Warcraft/_retail_/Interface/AddOns/QuickQuest/**)",
+      "Bash(lua test_options.lua)",
+      "Bash(make format)",
+      "Bash(git add .)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
